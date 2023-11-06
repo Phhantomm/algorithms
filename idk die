@@ -1,0 +1,179 @@
+
+bubble sort
+
+def BubbleSort(arr):
+n = len(arr)
+for i in range(n):
+swapped = False
+for j in range(0, n - i - 1):
+if arr[j] &gt; arr[j+1]:
+arr[j], arr[j+1] = arr[j+1], arr[j]
+swapped = True
+if not swapped:
+break
+list=[0,1,1,0,0,1]
+print(BubbleSort(list))
+
+hexadecimal
+
+def custom_int_to_hexadecimal(number):
+    if not isinstance(number, int) or number < 0:
+        return "Invalid input"
+
+    if number == 0:
+        return "0"
+
+    hexadecimal_chars = "0123456789ABCDEF"
+    hexadecimal_representation = ""
+    
+    while number > 0:
+        remainder = number % 16
+        hexadecimal_representation = hexadecimal_chars[remainder] + hexadecimal_representation
+        number = number // 16
+
+    return "0x" + hexadecimal_representation
+
+# Example usage:
+number = 255
+hexadecimal = custom_int_to_hexadecimal(number)
+print(f"The hexadecimal representation of {number} is {hexadecimal}")
+
+neighboring sort
+
+def neighboring(arr1, arr2):
+a = len(arr1)
+b = len(arr2)
+n = [[0] * (b + 1) for _ in range(a + 1)]
+
+for i in range(1, a + 1):
+for j in range(1, b + 1):
+if arr1[i - 1] == arr2[j - 1]:
+n[i][j] = n[i - 1][j - 1] + 1
+else:
+n[i][j] = max(n[i - 1][j], n[i][j -
+1])
+i, j = a, b
+common_elements = []
+while i &gt; 0 and j &gt; 0:
+if arr1[i - 1] == arr2[j - 1]:
+common_elements.insert(0, arr1[i - 1])
+i -= 1
+j -= 1
+elif n[i - 1][j] &gt; n[i][j - 1]:
+i -= 1
+else:
+j -= 1
+return common_elements
+arr1 = [1, 2, 5, 8, 9, 10]
+arr2 = [1, 2, 8, 9, 10]
+result = neighboring(arr1, arr2)
+print(result)
+
+binary
+
+decimal=0
+i=0
+binary=11011
+while (binary != 0):
+dec = binary % 10
+decimal = decimal + dec * pow(2, i)
+binary = binary // 10
+i += 1
+print(decimal)
+bin=10101
+b=0
+dec=0
+while (bin != 0):
+deci = bin % 10
+dec = dec + deci * pow(2, b)
+bin = bin // 10
+b += 1
+print(dec)
+c = dec*decimal
+print(c)
+
+stacks
+
+class Stack:
+def __init__(self, maxim_size=10):
+self.stack = []
+self.maxim_stack = []
+self.maxim_size = maxim_size
+def push(self, value):
+self.stack.append(value)
+def max(self):
+return self.maxim_stack[-1]
+stack=Stack()
+stuff=[1,2,3,5,7,10]
+for i in stuff:
+
+stack.push(i)
+print(f&quot;max value is&quot;, {stack.max()})
+
+counting sort
+
+def counting_sort(arr):
+    max_value = max(arr)
+    min_value = min(arr)
+    range_of_values = max_value - min_value + 1
+
+    # Create a counting array to store the count of each element
+    count = [0] * range_of_values
+
+    # Count the occurrences of each element in the input array
+    for num in arr:
+        count[num - min_value] += 1
+
+    # Reconstruct the sorted array from the counting array
+    sorted_arr = []
+    for i in range(range_of_values):
+        sorted_arr.extend([i + min_value] * count[i])
+
+    return sorted_arr
+
+# Example usage:
+arr = [4, 2, 2, 8, 3, 3, 1]
+sorted_arr = counting_sort(arr)
+print("Sorted array:", sorted_arr)
+
+selection sort
+
+def selection_sort(arr):
+    n = len(arr)
+
+    for i in range(n):
+        # Find the minimum element in the unsorted portion of the array
+        min_index = i
+        for j in range(i + 1, n):
+            if arr[j] < arr[min_index]:
+                min_index = j
+
+        # Swap the found minimum element with the first element in the unsorted portion
+        arr[i], arr[min_index] = arr[min_index], arr[i]
+
+# Example usage:
+arr = [64, 25, 12, 22, 11]
+selection_sort(arr)
+print("Sorted array:", arr)
+
+
+insertion sort
+
+def insertion_sort(arr):
+    for i in range(1, len(arr)):
+        key = arr[i]  # Current element to be inserted
+        j = i - 1  # Index of the previous element
+
+        # Move elements of the sorted subarray that are greater than the key
+        # to the right, shifting them one position ahead
+        while j >= 0 and key < arr[j]:
+            arr[j + 1] = arr[j]
+            j -= 1
+
+        # Insert the key into its correct position in the sorted subarray
+        arr[j + 1] = key
+
+# Example usage:
+arr = [64, 25, 12, 22, 11]
+insertion_sort(arr)
+print("Sorted array:", arr)
